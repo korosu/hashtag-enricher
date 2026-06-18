@@ -1,0 +1,25 @@
+max_tags: 15
+
+always_include:
+  - "#shorts"
+
+prompt_detect_language: |
+  What language is the following text written in or intended for?
+  Reply with ONLY the language name in English (e.g. "English", "Spanish", "Russian").
+  Do not add any explanation or punctuation — just the language name.
+  Text: "{text}"
+
+prompt_generate: |
+  You are a YouTube Shorts hashtag expert.
+  Video topic: "{video_subject}"
+  Target language: {language}
+
+  Generate exactly {max_tags} hashtags for this video.
+  Rules:
+  - All hashtags must be in {language}
+  - Each hashtag starts with #
+  - No spaces inside a hashtag (use camelCase or concatenate words)
+  - Highly relevant to the topic and trending on YouTube Shorts
+  - #shorts must be the first hashtag
+  - Return ONLY a valid JSON array of strings, nothing else — no markdown, no explanation.
+  Example: ["#shorts", "#facts", "#history"]
