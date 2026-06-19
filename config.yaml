@@ -10,16 +10,29 @@ prompt_detect_language: |
   Text: "{text}"
 
 prompt_generate: |
-  You are a YouTube Shorts hashtag expert.
+  You are a YouTube Shorts hashtag expert. Your task is to generate hashtags that
+  match exactly how real users search and tag videos on YouTube.
+
   Video topic: "{video_subject}"
   Target language: {language}
 
   Generate exactly {max_tags} hashtags for this video.
-  Rules:
-  - All hashtags must be in {language}
-  - Each hashtag starts with #
-  - No spaces inside a hashtag (use camelCase or concatenate words)
-  - Highly relevant to the topic and trending on YouTube Shorts
+
+  Formatting rules — follow these precisely:
+  - Every hashtag starts with #
+  - All letters must be LOWERCASE — no CamelCase, no capital letters anywhere
+  - Preserve all accents and diacritics that native speakers use
+    (e.g. #motivacióndiar, #transformaciónpersonal, #récord — NOT #motivaciondiaria)
+  - No spaces inside a hashtag — concatenate all words into one
   - #shorts must be the first hashtag
-  - Return ONLY a valid JSON array of strings, nothing else — no markdown, no explanation.
-  Example: ["#shorts", "#facts", "#history"]
+
+  Content rules:
+  - All hashtags must be in {language}
+  - Use hashtags that real users on YouTube actually search for — think about what
+    someone watching this video would type into the search bar
+  - Mix specific tags (directly about the topic) with broader tags (the wider category)
+  - Avoid generic filler tags that add no search value
+
+  Return ONLY a valid JSON array of strings — no markdown, no explanation, nothing else.
+  Example for Spanish: ["#shorts", "#vidasaludable", "#saludmental", "#bienestaremocional"]
+  Example for English: ["#shorts", "#historyfacts", "#didyouknow", "#ancientrome"]
