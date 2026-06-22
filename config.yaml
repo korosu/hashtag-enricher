@@ -1,5 +1,10 @@
-max_tags: 15
+# min and max tags to generate (the LLM will pick the best count in this range)
+# Note: always_include tags are added on top by the code — do not count them here
+min_tags: 12
+max_tags: 20
 
+# These tags are always prepended to the final list by the code, in this order.
+# The LLM is instructed to skip them — so no duplicates or ordering issues.
 always_include:
   - "#shorts"
 
@@ -10,29 +15,47 @@ prompt_detect_language: |
   Text: "{text}"
 
 prompt_generate: |
-  You are a YouTube Shorts hashtag expert. Your task is to generate hashtags that
-  match exactly how real users search and tag videos on YouTube.
+  You are an expert YouTube Shorts SEO specialist. Your task is to generate hashtags
+  that match exactly how real users search and tag videos on YouTube.
 
   Video topic: "{video_subject}"
   Target language: {language}
 
-  Generate exactly {max_tags} hashtags for this video.
+  Generate between {min_tags} and {max_tags} CONTENT hashtags using this 3-layer strategy:
+
+  Layer 1 — Post-specific tags (60-70% of total):
+  - Highly relevant to the exact video topic
+  - Include specific keywords viewers would search for
+  - Use both short and long-tail keywords
+  - These are the most important tags — prioritise them
+
+  Layer 2 — Niche-specific tags (20-30% of total):
+  - Related to the broader niche or category of the video
+  - Help YouTube understand what kind of content this is
+
+  Layer 3 — Broad discovery tags (10-20% of total):
+  - General viral-discovery tags
+  - Use only a few — do not pad with generic filler
+
+  Order: from most specific (Layer 1) to most broad (Layer 3).
 
   Formatting rules — follow these precisely:
-  - Every hashtag starts with #
-  - All letters must be LOWERCASE — no CamelCase, no capital letters anywhere
-  - Preserve all accents and diacritics that native speakers use
-    (e.g. #motivacióndiar, #transformaciónpersonal, #récord — NOT #motivaciondiaria)
-  - No spaces inside a hashtag — concatenate all words into one
-  - #shorts must be the first hashtag
-
-  Content rules:
   - All hashtags must be in {language}
-  - Use hashtags that real users on YouTube actually search for — think about what
-    someone watching this video would type into the search bar
-  - Mix specific tags (directly about the topic) with broader tags (the wider category)
-  - Avoid generic filler tags that add no search value
+  - Every hashtag starts with #
+  - All letters must be LOWERCASE — no CamelCase, no capitals anywhere
+  - Preserve all accents and diacritics that native speakers use
+    (e.g. #recuperación, #motivacióndiaria — NOT #recuperacion, #motivaciondiaria)
+  - No spaces inside a hashtag — concatenate all words into one
+
+  Tags to EXCLUDE — these are reserved and will be added automatically, do not include them:
+  {excluded_tags}
+
+  Quality rules:
+  - Prioritise relevance over search volume
+  - Never generate misleading or unrelated tags
+  - No duplicate tags
+  - Use tags that a real viewer might actually search for
 
   Return ONLY a valid JSON array of strings — no markdown, no explanation, nothing else.
-  Example for Spanish: ["#shorts", "#vidasaludable", "#saludmental", "#bienestaremocional"]
-  Example for English: ["#shorts", "#historyfacts", "#didyouknow", "#ancientrome"]
+  Example for Spanish: ["#dejarelacohol", "#vidasaludable", "#saludmental", "#bienestaremocional", "#motivacióndiaria", "#viral"]
+  Example for English: ["#romanempirefacts", "#whyromefall", "#ancientrome", "#historyfacts", "#didyouknow", "#viral"]
