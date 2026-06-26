@@ -3,6 +3,10 @@
 min_tags: 12
 max_tags: 20
 
+# Set to false for reasoning models (e.g. OpenAI o1, o3, o4) that do not accept
+# a temperature parameter. Leave as true for all standard chat models.
+supports_temperature: true
+
 # These tags are always prepended to the final list by the code, in this order.
 # The LLM is instructed to skip them — so no duplicates or ordering issues.
 always_include:
