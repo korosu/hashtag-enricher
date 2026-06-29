@@ -1,11 +1,15 @@
 .env
+config.yaml
 __pycache__/
 *.pyc
 *.pyo
 .ruff_cache/
+.pytest_cache/
 logs/
 *.egg-info/
 dist/
+build/
 .venv/
 venv/
 .idea/
+.DS_Store
