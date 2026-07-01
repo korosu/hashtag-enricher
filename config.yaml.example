@@ -5,9 +5,9 @@
 
 # ── Target platform ──────────────────────────────────────────────────────────
 # Affects the number of generated tags and quality filters.
-#   youtube    — 3–5 tags recommended; hard limit 15 (all ignored if exceeded)
-#   tiktok     — 3–5 tags; hard limit 5 (TikTok enforces this since 2025)
-#   instagram  — 3–5 tags; hard limit 5 (Instagram enforced cap Dec 2025)
+#   youtube    — 3–5 tags recommended; limit 60
+#   tiktok     — 3–5 tags; limit 5
+#   instagram  — 3–5 tags; limit 5
 platform: youtube
 
 # ── Tag count ─────────────────────────────────────────────────────────────────
