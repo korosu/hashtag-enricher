@@ -12,7 +12,7 @@ platform: youtube
 
 # ── Tag count ─────────────────────────────────────────────────────────────────
 # The LLM will generate between min_tags and max_tags CONTENT hashtags.
-# Note: always_include tags are added on top by the code — they do not count here.
+# Note: always_include counts toward the max_tags budget.
 # Best practice 2026: use 3–5 total per post across ALL major platforms.
 min_tags: 3
 max_tags: 5
@@ -169,3 +169,4 @@ prompt_generate: |
 
   Spanish / instagram / topic "moon fits inside Russia":
   ["#lalunacaberusia", "#curiosidadesdeluniverso", "#astronomía", "#datoscuriosos"]
+
