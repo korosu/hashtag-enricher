@@ -3,6 +3,11 @@
 # Copy this file to config.yaml and adjust as needed.
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ── Default directory ─────────────────────────────────────────────────────────
+# Directory to scan for *.mp4 files. Used when --dir is not specified.
+# If neither --dir nor directory is set, defaults to "." (current directory).
+# directory: "./videos"
+
 # ── Target platform ──────────────────────────────────────────────────────────
 # Affects the number of generated tags and quality filters.
 #   youtube    — 3–5 tags recommended; limit 60
