@@ -41,6 +41,9 @@ banned_tags: []
 always_include:
   - "#shorts"
 
+# ── Telegram ───────────────────────────────────────────────────────────────────────
+telegram_prefix: "hashtag-enricher"
+
 # ── LLM temperature ──────────────────────────────────────────────────────────
 # Set to false for reasoning models (o1, o3, o4) that reject the temperature parameter.
 supports_temperature: true
