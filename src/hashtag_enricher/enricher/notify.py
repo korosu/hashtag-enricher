@@ -8,9 +8,12 @@ import httpx
 
 
 class _TelegramSettings(Protocol):
-    telegram_token: str
-    telegram_chat_id: str
-    telegram_prefix: str
+    @property
+    def telegram_token(self) -> str: ...
+    @property
+    def telegram_chat_id(self) -> str: ...
+    @property
+    def telegram_prefix(self) -> str: ...
 
 
 def alert(msg: str, settings: _TelegramSettings) -> None:
